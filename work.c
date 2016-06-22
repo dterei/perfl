@@ -155,4 +155,3 @@ work *work_setup(int lines)
     __work_calibrate(w);
     return w;
 }
-
