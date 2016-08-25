@@ -1,5 +1,9 @@
 /**
  * work.c - fake CPU work generation.
+ *
+ * author: David Terei <code@davidterei.com>
+ * copyright: Copyright (c) 2016, David Terei
+ * license: BSD
  */
 
 #include <assert.h>

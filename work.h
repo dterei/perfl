@@ -3,6 +3,10 @@
 
 /**
  * work.h - fake CPU work generation.
+ *
+ * author: David Terei <code@davidterei.com>
+ * copyright: Copyright (c) 2016, David Terei
+ * license: BSD
  */
 
 #include <stdint.h>
@@ -22,5 +26,15 @@ work *work_setup(int lines);
 
 /* Run a CPU bound computation over the working set for 'us' microseconds. */
 void work_run(work *w, uint64_t us);
+
+/* Busy wait for specified number of cycles. */
+static inline void wait_cycles(uint64_t cycles)
+{
+  asm volatile( "MOV %0, %%rcx\n\t"
+                "loop: DEC %%rcx\n\t"
+                "CMP $0, %%rcx\n\t"
+                "JNZ loop"
+                :: "r" (cycles) );
+}
 
 #endif /* WORKLOAD_H */
