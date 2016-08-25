@@ -37,4 +37,20 @@ static inline void wait_cycles(uint64_t cycles)
                 :: "r" (cycles) );
 }
 
+/**
+ * Alternative: link-list approach.
+ *
+ * Credit: Ulrich Drepper, http://lwn.net/Articles/252125/
+ */
+#if 0
+
+/* Set padding so work_elm is cacheline sized. */
+#define PADDING 56
+
+struct work_elm {
+  struct work_elm* next;
+  char pad[PADDING];
+};
+#endif
+
 #endif /* WORKLOAD_H */
